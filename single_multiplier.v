@@ -1,3 +1,6 @@
+//IEEE Floating Point Multiplier (Single Precision)
+//Copyright (C) Jonathan P Dawson 2013
+//2013-12-12
 module multiplier(
         input_a,
         input_b,
@@ -91,7 +94,7 @@ module multiplier(
 
       special_cases:
       begin
-        //if a is NaN or b is NaN return NaN
+        //if a is NaN or b is NaN return NaN 
         if ((a_e == 128 && a_m != 0) || (b_e == 128 && b_m != 0)) begin
           z[31] <= 1;
           z[30:23] <= 255;
