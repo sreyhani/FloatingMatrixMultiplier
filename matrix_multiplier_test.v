@@ -18,9 +18,6 @@ module test();
             UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
 
 
-// note that sensitive list is omitted in always block
-// therefore always-block run forever
-// clock period = 2 ns
 initial 
 begin
     clk = 1;
@@ -31,7 +28,7 @@ end
 initial // initial block executes only once
 	begin
 	   rst = 0;
-		// values for a and b
+		// values for In1 and In2
 		In1 = 0;
 		In2 = 0;
 		rst = 0;
