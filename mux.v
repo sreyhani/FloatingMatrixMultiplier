@@ -34,5 +34,5 @@ input [IN_LENGTH-1 : 0 ] In;
 input [SELECT_LENGTH - 1 : 0 ] select;
 output [WIDTH -1 : 0 ] Out;
 
-assign Out = In >> ( NUM_INPUTS-select) * WIDTH;
+assign Out = In >> ( NUM_INPUTS-1-select) * WIDTH;
 endmodule
