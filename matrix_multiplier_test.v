@@ -1,9 +1,8 @@
+`timescale 1ns / 1ps
 
 
-// matrix_multiplier_tb.v
-`timescale 1 ns/10 ps 
 
-module matrix_multiplier_tb;
+module test();
 
     reg [127:0] In1;
 	reg	[127:0] In2;
@@ -12,7 +11,8 @@ module matrix_multiplier_tb;
 	wire out_ready;
 
 
-    localparam period = 200;  
+    localparam period = 200;
+    localparam clock_period = 50;  
 
     matrix_multiplier #(.NUM_FIRST_ROW(2), .NUM_FIRST_COL(2), .NUM_SECOND_COL(2)) 
             UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
@@ -21,17 +21,15 @@ module matrix_multiplier_tb;
 // note that sensitive list is omitted in always block
 // therefore always-block run forever
 // clock period = 2 ns
-always 
+initial 
 begin
-    clk = 1'b1; 
-    #20; // high for 20 * timescale = 20 ns
-
-    clk = 1'b0;
-    #20; // low for 20 * timescale = 20 ns
+    clk = 1;
+    forever #(clock_period/2) clk = ~ clk;
 end
 
 initial // initial block executes only once
 	begin
+	   rst = 0;
 		// values for a and b
 		In1 = 0;
 		In2 = 0;
@@ -51,9 +49,10 @@ initial // initial block executes only once
 		In2[95:64] = 32'b01000000010000000000000000000000; // = 3
 		In2[127:96] = 32'b01000000100000000000000000000000; // = 4
 		
-		#20;
+		#(clock_period/2);
 		load = 1;
-		#period;
+		#(100*clock_period);
+		$finish;
 		
 		//if(Out[31:0] == 32'b01000000101000000000000000000000) begin // = 5
 		//	$display("test ");
@@ -61,3 +60,4 @@ initial // initial block executes only once
 	end
 	
 endmodule
+
