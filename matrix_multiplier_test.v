@@ -1,4 +1,5 @@
 
+
 // matrix_multiplier_tb.v
 `timescale 1 ns/10 ps 
 
@@ -13,7 +14,8 @@ module matrix_multiplier_tb;
 
     localparam period = 200;  
 
-    matrix_multiplier UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
+    matrix_multiplier #(.NUM_FIRST_ROW(2), .NUM_FIRST_COL(2), .NUM_SECOND_COL(2)) 
+            UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
 
 
 // note that sensitive list is omitted in always block
