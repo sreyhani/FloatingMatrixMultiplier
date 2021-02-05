@@ -83,7 +83,7 @@ reg res_ack = 0;
 reg res_ready[1:NUM_FIRST_ROW][1:NUM_SECOND_COL];
 reg res_full_ready = 1;
 
-integer k,t;
+integer k,t,g,l;
 genvar i,j;
 generate
     for(i=0; i<NUM_FINAL_ROW; i=i+1) begin
@@ -155,6 +155,11 @@ always @(posedge clk, negedge rst) begin
         rst_mult <= 0;
         reset_adder <= 0;
         select_signal <= 0;
+        for(g=1; g<=NUM_FINAL_ROW; g=g+1) begin
+                for (l=1 ;l<=NUM_FINAL_COL; l=l+1) begin
+                   out_matrix[g][l] <= 0;
+            end
+        end
     end
     else begin
         case (state)
@@ -166,6 +171,11 @@ always @(posedge clk, negedge rst) begin
                        rst_mult <= 1;
                     end
                     else begin
+                        for(g=1; g<=NUM_FINAL_ROW; g=g+1) begin
+                            for (l=1 ;l<=NUM_FINAL_COL; l=l+1) begin
+                                out_matrix[g+1][l+1] <= 0;
+                            end
+                        end
                         state <= get_input_s;
                         rst_mult <= 0;
                         select_signal <= 0;
