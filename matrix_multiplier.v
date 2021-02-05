@@ -46,11 +46,12 @@ output reg out_ready;
 
 localparam SELECT_LENGTH = $clog2( NUM_FIRST_COL );
 localparam get_input_s = 0;
-localparam mult_elements_s = 1;
-localparam wait_for_mult_s = 2;
-localparam add_elements_s = 3;
-localparam wait_for_add_s = 4;
-localparam out_is_ready_s = 5;
+localparam mult_elements_in1_s = 1;
+localparam mult_elements_in2_s = 2;
+localparam wait_for_mult_s = 3;
+localparam add_elements_s = 4;
+localparam wait_for_add_s = 5;
+localparam out_is_ready_s = 6;
 
 reg [ELEMENT_LENGTH-1:0] out_matrix [1:NUM_FINAL_ROW][1:NUM_FINAL_COL];
 wire [ELEMENT_LENGTH-1:0] temp_matrix [1:NUM_FINAL_ROW][1:NUM_FINAL_COL];
@@ -177,7 +178,7 @@ always @(posedge clk, negedge rst) begin
                     if (load) begin
                        In1_Copy <= In1;
                        In2_Copy <= In2;
-                       state <= mult_elements_s;
+                       state <= mult_elements_in1_s;
                        rst_mult <= 0;
                     end
                     else begin
@@ -196,18 +197,27 @@ always @(posedge clk, negedge rst) begin
                         load_input <= 0;
                     end
                 end
-            mult_elements_s: begin
+            mult_elements_in1_s: begin
                     
-//                    if(in1_full_ack && in2_full_ack) begin
+                    if(in1_full_ack) begin
                         in1_stb <= 1;
+                        output_ack <= 0;
+                        state <= mult_elements_in2_s;
+                    end
+                    else begin
+                        state <= mult_elements_in1_s;
+                    end
+                end
+            mult_elements_in2_s: begin
+                    if(in2_full_ack) begin
                         in2_stb <= 1;
                         output_ack <= 0;
                         state <= wait_for_mult_s;
-//                    end
-//                    else begin
-//                        state <= mult_elements_s;
-//                    end
-                end
+                    end
+                    else begin
+                        state <= mult_elements_in2_s;
+                    end
+            end
             wait_for_mult_s: begin
                    if(output_full_stb) begin
                         state <= add_elements_s;
@@ -238,7 +248,7 @@ always @(posedge clk, negedge rst) begin
                         end
                         else begin
                             select_signal <= select_signal + 1;
-                            state <= mult_elements_s;
+                            state <= mult_elements_in1_s;
                         end
                     end
                     else begin
