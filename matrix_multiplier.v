@@ -173,7 +173,7 @@ always @(posedge clk, negedge rst) begin
                     else begin
                         for(g=1; g<=NUM_FINAL_ROW; g=g+1) begin
                             for (l=1 ;l<=NUM_FINAL_COL; l=l+1) begin
-                                out_matrix[g+1][l+1] <= 0;
+                                out_matrix[g][l] <= 0;
                             end
                         end
                         state <= get_input_s;
