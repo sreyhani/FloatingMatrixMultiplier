@@ -29,7 +29,7 @@ parameter NUM_INPUTS  = 2
 In,select,Out
 );
 localparam IN_LENGTH = NUM_INPUTS * WIDTH;
-localparam SELECT_LENGTH = $clog2( NUM_INPUTS );
+localparam SELECT_LENGTH = NUM_INPUTS;
 input [IN_LENGTH-1 : 0 ] In;
 input [SELECT_LENGTH - 1 : 0 ] select;
 output [WIDTH -1 : 0 ] Out;
