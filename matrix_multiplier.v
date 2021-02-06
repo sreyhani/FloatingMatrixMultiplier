@@ -44,7 +44,7 @@ input out_ack;
 output [OUT_LENGTH - 1 : 0] Out;
 output reg out_ready;
 
-localparam SELECT_LENGTH = $clog2( NUM_FIRST_COL );
+localparam SELECT_LENGTH = NUM_FIRST_COL;
 localparam get_input_s = 0;
 localparam mult_elements_in1_s = 1;
 localparam mult_elements_in2_s = 2;
@@ -243,7 +243,7 @@ always @(posedge clk, negedge rst) begin
                         in1_stb <= 0;
                         in2_stb <= 0;
                         load_input <= 0;
-                        if (select_signal == NUM_FINAL_ROW - 1) begin
+                        if (select_signal == NUM_FIRST_ROW - 1) begin
                             state <= out_is_ready_s;
                         end
                         else begin
