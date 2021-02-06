@@ -119,7 +119,7 @@ endgenerate
 generate
     for(i=1; i<= NUM_FIRST_ROW; i=i+1) begin
         for(j=1; j<=NUM_SECOND_COL; j=j+1) begin
-            multiplier multiplier_i(
+            single_multiplier multiplier_i(
                 .clk(clk),
                 .rst(rst_mult),
                 .input_a(out_rows_mux[i]),
