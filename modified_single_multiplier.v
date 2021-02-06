@@ -1,7 +1,7 @@
 //IEEE Floating Point Multiplier (Single Precision)
 //Copyright (C) Jonathan P Dawson 2013
 //2013-12-12
-module single_multiplier(
+module modified_single_multiplier(
         input_a,
         input_b,
         input_a_stb,
@@ -41,13 +41,11 @@ module single_multiplier(
             special_cases = 4'd3,
             normalise_a   = 4'd4,
             normalise_b   = 4'd5,
-            multiply_0    = 4'd6,
-            multiply_1    = 4'd7,
-            normalise_1   = 4'd8,
-            normalise_2   = 4'd9,
-            round         = 4'd10,
-            pack          = 4'd11,
-            put_z         = 4'd12;
+            multiply      = 4'd6,
+            normalise_1   = 4'd7,
+            normalise_2   = 4'd8,
+            round         = 4'd9,
+            put_z         = 4'd10;
 
   reg       [31:0] a, b, z;
   reg       [23:0] a_m, b_m, z_m;
@@ -169,29 +167,26 @@ module single_multiplier(
       normalise_b:
       begin
         if (b_m[23]) begin
-          state <= multiply_0;
+          state <= multiply;
         end else begin
           b_m <= b_m << 1;
           b_e <= b_e - 1;
         end
       end
 
-      multiply_0:
+      multiply:
       begin
         z_s <= a_s ^ b_s;
         z_e <= a_e + b_e + 1;
         product <= a_m * b_m * 4;
-        state <= multiply_1;
-      end
 
-      multiply_1:
-      begin
         z_m <= product[49:26];
         guard <= product[25];
         round_bit <= product[24];
         sticky <= (product[23:0] != 0);
         state <= normalise_1;
       end
+
 
       normalise_1:
       begin
@@ -227,11 +222,7 @@ module single_multiplier(
             z_e <=z_e + 1;
           end
         end
-        state <= pack;
-      end
-
-      pack:
-      begin
+        //pack
         z[22 : 0] <= z_m[22:0];
         z[30 : 23] <= z_e[7:0] + 127;
         z[31] <= z_s;
@@ -244,7 +235,7 @@ module single_multiplier(
           z[30 : 23] <= 255;
           z[31] <= z_s;
         end
-        state <= put_z;
+        state <= put_z;      
       end
 
       put_z:
