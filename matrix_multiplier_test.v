@@ -1,8 +1,8 @@
+`timescale 1ns / 1ps
 
-// matrix_multiplier_tb.v
-`timescale 1 ns/10 ps 
 
-module matrix_multiplier_tb;
+
+module test();
 
     reg [127:0] In1;
 	reg	[127:0] In2;
@@ -11,26 +11,24 @@ module matrix_multiplier_tb;
 	wire out_ready;
 
 
-    localparam period = 200;  
+    localparam period = 200;
+    localparam clock_period = 50;  
 
-    matrix_multiplier UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
+    matrix_multiplier #(.NUM_FIRST_ROW(2), .NUM_FIRST_COL(2), .NUM_SECOND_COL(2)) 
+            UUT (.In1(In1), .In2(In2), .clk(clk), .rst(rst), .load(load), .out_ack(out_ack), .Out(Out), .out_ready(out_ready));
 
 
-// note that sensitive list is omitted in always block
-// therefore always-block run forever
-// clock period = 2 ns
-always 
+initial 
 begin
-    clk = 1'b1; 
-    #20; // high for 20 * timescale = 20 ns
-
-    clk = 1'b0;
-    #20; // low for 20 * timescale = 20 ns
+    clk = 1;
+    forever #(clock_period/2) clk = ~ clk;
 end
+
 
 initial // initial block executes only once
 	begin
-		// values for a and b
+	   rst = 0;
+		// values for In1 and In2
 		In1 = 0;
 		In2 = 0;
 		rst = 0;
@@ -39,23 +37,44 @@ initial // initial block executes only once
 		#period; // wait for period 
 		rst = 1;
 		
-		In1[31:0] = 32'b00111111100000000000000000000000; // = 1
-		In1[63:32] = 32'b01000000000000000000000000000000; // = 2
-		In1[95:64] = 32'b01000000010000000000000000000000; // = 3
-		In1[127:96] = 32'b01000000100000000000000000000000; // = 4
+		//   |1 2|
+		//   |3 4|
+		In1[127:96] = 32'b00111111100000000000000000000000; // = 1
+		In1[95:64] = 32'b01000000000000000000000000000000; // = 2
+		In1[63:32] = 32'b01000000010000000000000000000000; // = 3
+		In1[31:0] = 32'b01000000100000000000000000000000; // = 4
 		
-		In2[31:0] = 32'b00111111100000000000000000000000; // = 1
-		In2[63:32] = 32'b01000000000000000000000000000000; // = 2
-		In2[95:64] = 32'b01000000010000000000000000000000; // = 3
-		In2[127:96] = 32'b01000000100000000000000000000000; // = 4
+		//   |1 3|
+		//   |2 4|
+		In2[127:96] = 32'b00111111100000000000000000000000; // = 1
+		In2[95:64] = 32'b01000000000000000000000000000000; // = 2
+		In2[63:32] = 32'b01000000010000000000000000000000; // = 3
+		In2[31:0] = 32'b01000000100000000000000000000000; // = 4
 		
-		#20;
+		#(clock_period/2);
 		load = 1;
-		#period;
+		#(100*clock_period);
 		
-		//if(Out[31:0] == 32'b01000000101000000000000000000000) begin // = 5
-		//	$display("test ");
-		//end
+		$display("out 1 = %b",Out[127:96]);
+		if(Out[127:96] == 32'b01000000101000000000000000000000) begin // = 5
+			$display("test 1");
+		end
+		$display("out 2 = %b",Out[95:64]);
+		if(Out[95:64] == 32'b01000001001100000000000000000000) begin // = 11
+			$display("test 2");
+		end
+		$display("out 3 = %b",Out[63:32]);	
+		if(Out[63:32] == 32'b01000001001100000000000000000000) begin // = 11
+			$display("test 3");
+		end
+		$display("out 4 = %b",Out[31:0]);
+		if(Out[31:0] == 32'b01000001110010000000000000000000) begin // = 25
+			$display("test 4");
+		end
+		
+		$finish;
 	end
 	
 endmodule
+
+
