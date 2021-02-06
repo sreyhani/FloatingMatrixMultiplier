@@ -1,0 +1,517 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.94 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.94 secs
+ 
+--> Reading design: modified_single_multiplier.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "modified_single_multiplier.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "modified_single_multiplier"
+Output Format                      : NGC
+Target Device                      : xc6slx150-3-fgg484
+
+---- Source Options
+Top Module Name                    : modified_single_multiplier
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" into library work
+Parsing module <modified_single_multiplier>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <modified_single_multiplier>.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 86: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 87: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 163: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 173: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 180: Result of 12-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 194: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 207: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 220: Result of 25-bit expression is truncated to fit in 24-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 222: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v" Line 227: Result of 9-bit expression is truncated to fit in 8-bit target.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <modified_single_multiplier>.
+    Related source file is "C:\Users\Sajjad\projects\Fall 99\DSD\dsdproject\FloatingMatrixMultiplier\modified_single_multiplier.v".
+        get_a = 4'b0000
+        get_b = 4'b0001
+        unpack = 4'b0010
+        special_cases = 4'b0011
+        normalise_a = 4'b0100
+        normalise_b = 4'b0101
+        multiply = 4'b0110
+        normalise_1 = 4'b0111
+        normalise_2 = 4'b1000
+        round = 4'b1001
+        put_z = 4'b1010
+    Found 32-bit register for signal <output_z>.
+    Found 4-bit register for signal <state>.
+    Found 24-bit register for signal <z_m>.
+    Found 10-bit register for signal <z_e>.
+    Found 32-bit register for signal <z>.
+    Found 1-bit register for signal <guard>.
+    Found 1-bit register for signal <round_bit>.
+    Found 1-bit register for signal <sticky>.
+    Found 1-bit register for signal <z_s>.
+    Found 50-bit register for signal <product>.
+    Found 24-bit register for signal <b_m>.
+    Found 10-bit register for signal <b_e>.
+    Found 24-bit register for signal <a_m>.
+    Found 10-bit register for signal <a_e>.
+    Found 1-bit register for signal <a_s>.
+    Found 1-bit register for signal <b_s>.
+    Found 1-bit register for signal <input_b_ack>.
+    Found 32-bit register for signal <b>.
+    Found 1-bit register for signal <input_a_ack>.
+    Found 32-bit register for signal <a>.
+    Found 1-bit register for signal <output_z_stb>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 29                                             |
+    | Inputs             | 17                                             |
+    | Outputs            | 4                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0000                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 9-bit subtractor for signal <GND_1_o_GND_1_o_sub_6_OUT> created at line 86.
+    Found 9-bit subtractor for signal <GND_1_o_GND_1_o_sub_7_OUT> created at line 87.
+    Found 11-bit adder for signal <n0319> created at line 180.
+    Found 11-bit adder for signal <n0249> created at line 180.
+    Found 24-bit adder for signal <z_m[23]_GND_1_o_add_69_OUT> created at line 220.
+    Found 10-bit adder for signal <z_e[9]_GND_1_o_add_71_OUT> created at line 222.
+    Found 8-bit adder for signal <z_e[7]_GND_1_o_add_75_OUT> created at line 227.
+    Found 10-bit subtractor for signal <GND_1_o_GND_1_o_sub_48_OUT<9:0>> created at line 163.
+    Found 10-bit subtractor for signal <GND_1_o_GND_1_o_sub_52_OUT<9:0>> created at line 173.
+    Found 10-bit subtractor for signal <GND_1_o_GND_1_o_sub_61_OUT<9:0>> created at line 194.
+    Found 24x24-bit multiplier for signal <a_m[23]_b_m[23]_MuLt_57_OUT> created at line 181.
+    Found 32-bit comparator greater for signal <PWR_1_o_z_e[9]_LessThan_65_o> created at line 206
+    Found 32-bit comparator greater for signal <z_e[9]_GND_1_o_LessThan_79_o> created at line 233
+    Summary:
+	inferred   1 Multiplier(s).
+	inferred   9 Adder/Subtractor(s).
+	inferred 289 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred  77 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <modified_single_multiplier> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 1
+ 24x24-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 9
+ 10-bit addsub                                         : 1
+ 10-bit subtractor                                     : 2
+ 11-bit adder                                          : 2
+ 24-bit adder                                          : 1
+ 8-bit adder                                           : 1
+ 9-bit subtractor                                      : 2
+# Registers                                            : 19
+ 1-bit register                                        : 7
+ 10-bit register                                       : 3
+ 2-bit register                                        : 1
+ 24-bit register                                       : 3
+ 32-bit register                                       : 4
+ 50-bit register                                       : 1
+# Comparators                                          : 2
+ 32-bit comparator greater                             : 2
+# Multiplexers                                         : 77
+ 1-bit 2-to-1 multiplexer                              : 56
+ 10-bit 2-to-1 multiplexer                             : 8
+ 24-bit 2-to-1 multiplexer                             : 7
+ 32-bit 2-to-1 multiplexer                             : 6
+# FSMs                                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1710 - FF/Latch <product_0> (without init value) has a constant value of 0 in block <modified_single_multiplier>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <product_1> (without init value) has a constant value of 0 in block <modified_single_multiplier>. This FF/Latch will be trimmed during the optimization process.
+
+Synthesizing (advanced) Unit <modified_single_multiplier>.
+The following registers are absorbed into counter <b_e>: 1 register on signal <b_e>.
+The following registers are absorbed into counter <a_e>: 1 register on signal <a_e>.
+	Found pipelined multiplier on signal <a_m[23]_b_m[23]_MuLt_57_OUT>:INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_a_m[23]_b_m[23]_MuLt_57_OUT by adding 7 register level(s).
+Unit <modified_single_multiplier> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 1
+ 24x24-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 6
+ 10-bit adder carry in                                 : 1
+ 10-bit addsub                                         : 1
+ 24-bit adder                                          : 1
+ 8-bit adder                                           : 1
+ 9-bit subtractor                                      : 2
+# Counters                                             : 2
+ 10-bit down counter                                   : 2
+# Registers                                            : 269
+ Flip-Flops                                            : 269
+# Comparators                                          : 2
+ 32-bit comparator greater                             : 2
+# Multiplexers                                         : 75
+ 1-bit 2-to-1 multiplexer                              : 56
+ 10-bit 2-to-1 multiplexer                             : 6
+ 24-bit 2-to-1 multiplexer                             : 7
+ 32-bit 2-to-1 multiplexer                             : 6
+# FSMs                                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <product_0> (without init value) has a constant value of 0 in block <modified_single_multiplier>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <product_1> (without init value) has a constant value of 0 in block <modified_single_multiplier>. This FF/Latch will be trimmed during the optimization process.
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <state[1:4]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 0000
+ 0001  | 0001
+ 0010  | 0010
+ 0011  | 0011
+ 0100  | 0100
+ 1010  | 1010
+ 0101  | 0101
+ 0110  | 0110
+ 0111  | 0111
+ 1000  | 1000
+ 1001  | 1001
+-------------------
+
+Optimizing unit <modified_single_multiplier> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block modified_single_multiplier, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 277
+ Flip-Flops                                            : 277
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : modified_single_multiplier.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 384
+#      GND                         : 1
+#      INV                         : 2
+#      LUT1                        : 23
+#      LUT2                        : 14
+#      LUT3                        : 12
+#      LUT4                        : 21
+#      LUT5                        : 104
+#      LUT6                        : 99
+#      MUXCY                       : 50
+#      MUXF7                       : 3
+#      VCC                         : 1
+#      XORCY                       : 54
+# FlipFlops/Latches                : 277
+#      FD                          : 1
+#      FDE                         : 269
+#      FDR                         : 7
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 103
+#      IBUF                        : 68
+#      OBUF                        : 35
+# DSPs                             : 4
+#      DSP48A1                     : 4
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx150fgg484-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             277  out of  184304     0%  
+ Number of Slice LUTs:                  275  out of  92152     0%  
+    Number used as Logic:               275  out of  92152     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    399
+   Number with an unused Flip Flop:     122  out of    399    30%  
+   Number with an unused LUT:           124  out of    399    31%  
+   Number of fully used LUT-FF pairs:   153  out of    399    38%  
+   Number of unique control sets:        15
+
+IO Utilization: 
+ Number of IOs:                         104
+ Number of bonded IOBs:                 104  out of    338    30%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+ Number of DSP48A1s:                      4  out of    180     2%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 281   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 15.993ns (Maximum Frequency: 62.528MHz)
+   Minimum input arrival time before clock: 4.129ns
+   Maximum output required time after clock: 3.732ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 15.993ns (frequency: 62.528MHz)
+  Total number of paths / destination ports: 163156 / 609
+-------------------------------------------------------------------------
+Delay:               15.993ns (Levels of Logic = 2)
+  Source:            Mmult_a_m[23]_b_m[23]_MuLt_57_OUT (DSP)
+  Destination:       Mmult_a_m[23]_b_m[23]_MuLt_57_OUT3 (DSP)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: Mmult_a_m[23]_b_m[23]_MuLt_57_OUT to Mmult_a_m[23]_b_m[23]_MuLt_57_OUT3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     DSP48A1:CLK->P47     18   6.742   1.049  Mmult_a_m[23]_b_m[23]_MuLt_57_OUT (Mmult_a_m[23]_b_m[23]_MuLt_57_OUT_P47_to_Mmult_a_m[23]_b_m[23]_MuLt_57_OUT1)
+     DSP48A1:C30->PCOUT47    1   2.689   0.000  Mmult_a_m[23]_b_m[23]_MuLt_57_OUT1 (Mmult_a_m[23]_b_m[23]_MuLt_57_OUT1_PCOUT_to_Mmult_a_m[23]_b_m[23]_MuLt_57_OUT2_PCIN_47)
+     DSP48A1:PCIN47->P47   18   2.264   1.049  Mmult_a_m[23]_b_m[23]_MuLt_57_OUT2 (Mmult_a_m[23]_b_m[23]_MuLt_57_OUT2_P47_to_Mmult_a_m[23]_b_m[23]_MuLt_57_OUT3)
+     DSP48A1:C30               2.200          Mmult_a_m[23]_b_m[23]_MuLt_57_OUT3
+    ----------------------------------------
+    Total                     15.993ns (13.895ns logic, 2.098ns route)
+                                       (86.9% logic, 13.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 143 / 141
+-------------------------------------------------------------------------
+Offset:              4.129ns (Levels of Logic = 4)
+  Source:            input_b_stb (PAD)
+  Destination:       state_FSM_FFd4 (FF)
+  Destination Clock: clk rising
+
+  Data Path: input_b_stb to state_FSM_FFd4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   1.222   0.684  input_b_stb_IBUF (input_b_stb_IBUF)
+     LUT2:I1->O            1   0.205   0.827  state_FSM_FFd4-In211 (state_FSM_FFd4-In21)
+     LUT6:I2->O            1   0.203   0.684  state_FSM_FFd4-In3 (state_FSM_FFd4-In4)
+     LUT4:I2->O            1   0.203   0.000  state_FSM_FFd4-In4 (state_FSM_FFd4-In)
+     FDR:D                     0.102          state_FSM_FFd4
+    ----------------------------------------
+    Total                      4.129ns (1.935ns logic, 2.194ns route)
+                                       (46.9% logic, 53.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 35 / 35
+-------------------------------------------------------------------------
+Offset:              3.732ns (Levels of Logic = 1)
+  Source:            s_input_b_ack (FF)
+  Destination:       input_b_ack (PAD)
+  Source Clock:      clk rising
+
+  Data Path: s_input_b_ack to input_b_ack
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              5   0.447   0.714  s_input_b_ack (s_input_b_ack)
+     OBUF:I->O                 2.571          input_b_ack_OBUF (input_b_ack)
+    ----------------------------------------
+    Total                      3.732ns (3.018ns logic, 0.714ns route)
+                                       (80.9% logic, 19.1% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |   15.993|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 11.00 secs
+Total CPU time to Xst completion: 10.37 secs
+ 
+--> 
+
+Total memory usage is 4505296 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   14 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+
